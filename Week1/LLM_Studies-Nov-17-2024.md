@@ -1,15 +1,14 @@
 ### Attention is All you Need Paper
 - I love the term autoregressive. Once you get it and remember to practice identifying that with how LLMs work does go a long way into helping into understand how all of fthe subseqent steps in the model lifecycle.
 Repeat it in your head as many times as you need and it will stick just like any pattern. Don't mind repeating exposure to the word to sink into long term memory to make sure it sticks its a great test quesyion.
-- The original trasfformer was developed for machine translation, translating English texts into German and French. 
+- The original trasformer was developed for machine translation, translating English texts into German and French. 
 - Transformer architecture consists of two submodules an encoder and decoder. 
 - The encoder module processes the input text and encodes it into a series of numerical representations or vectors that capture the contexual information of the input.
 - The decoder takes these encoded vectors and generates the output to generate text in the target language.
 - Both the encoder and decoder consist of many layers connected by a so-called self-attention mechanism.
-- Self-attention allows the model to weigh the model the importance of diferent words or tokens taken in a sequence.
+- Self-attention allows the model to weigh the model the importance of different words or tokens taken in a sequence.
 - This allows the model to capture long range dependencies and contexual relationships within the input data enhancing coherence and relevant outputs.
-- Later BERT shot for bidirectional encoder representation rom transfo:w
-rmers and into various other GPT models after 2018.
+- Later BERT shot for bidirectional encoder representation rom transformers and into various other GPT models after 2018.
 - GPT models have demonstrated the phenomonal ability at both zero shot and few shot learning tasks. 
 - Zero-shot refers to the ability to generalize to completely unseen tasks without any prior specific examples.
 - Few-shot however involves providing a minimal number of examples the user provides as input, such as providing leading questions to the LLM.
@@ -57,6 +56,8 @@ print(result)
 
 ## Stage 2
 5. Training loop
+
+Llama3 took took approximately 1.3 million GPU hours of compute for pre-training and utilized 400 TFLOPS of compute.
 6. Model evaluation
 7. Load pretrained weights
 
