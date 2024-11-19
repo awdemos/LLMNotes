@@ -77,20 +77,23 @@ Points to Classifier
 
 ### Diagram LLM
 ```mermaid
-graph TD;
-A["Build an LLM"] --> B["Stage 1"];
-B --> C["Data Preparation & Sampling"];
-B --> D["Attention Mechanism"];
-B --> E["LLM Architecture"];
-B --> F["Pre-training"];
-F --> G["Training Loop"];
-F --> H["Model Evaluation"];
-F --> I["Load Pretrained Weights"];
-F --> J["Fine-tuning"];
-J --> K["Personal Assistant"];
-J --> L["Classifier"];
-A --> M["Stage 2"];
-M --> F;
-M --> N["Stage 3"];
-N --> O["Dataset with Class Labels"];
+graph TD
+    A["Build an LLM"] --> B["Stage 1: Foundation"]
+    A --> M["Stage 2: Pre-training"]
+    A --> N["Stage 3: Fine-tuning"]
+
+    B --> C["Data Preparation & Sampling"]
+    B --> D["Attention Mechanism"]
+    B --> E["LLM Architecture"]
+
+    M --> F["Pre-training Process"]
+    F --> G["Training Loop"]
+    F --> H["Model Evaluation"]
+    F --> I["Load Pretrained Weights"]
+
+    N --> J["Fine-tuning"]
+    J --> K["Personal Assistant"]
+    J --> L["Classifier"]
+
+    N --> O["Dataset with Class Labels"]
 ```
