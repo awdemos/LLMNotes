@@ -1,6 +1,4 @@
 ### Attention is All you Need Paper
-- I love the term autoregressive. Once you get it and remember to practice identifying that with how LLMs work does go a long way into helping into understand how all of fthe subseqent steps in the model lifecycle.
-Repeat it in your head as many times as you need and it will stick just like any pattern. Don't mind repeating exposure to the word to sink into long term memory to make sure it sticks its a great test quesyion.
 - The original trasformer was developed for machine translation, translating English texts into German and French. 
 - Transformer architecture consists of two submodules an encoder and decoder. 
 - The encoder module processes the input text and encodes it into a series of numerical representations or vectors that capture the contexual information of the input.
@@ -19,6 +17,8 @@ Repeat it in your head as many times as you need and it will stick just like any
 - The ability o GPT's to accuratetly translate other languages was a surprising behavior when it was first observed.
 - The ability of LLMs to learn things on their own is called emergent behavior. 
 
+- I love the term autoregressive. Once you get it and remember to practice identifying that with how LLMs work does go a long way into helping into understand how all of fthe subseqent steps in the model lifecycle.
+Repeat it in your head as many times as you need and it will stick just like any pattern. Don't mind repeating exposure to the word to sink into long term memory to make sure it sticks its a great test quesyion.
 
 ## Build one From Scratch
 The three main stages of coding an LLM are implementing the LLM architecture and data preperation process
@@ -36,6 +36,7 @@ Point to "Building an LLM"
 During this stage LLMs process text one word at a time. Training LLMs with 
 millions to billions of parameters using next-word prediction task yield models to follow general instructions or perform specific 
 task targets.
+
 - Deep neural networks like LLMs cannot process raw text 
 directly since text is categorical it isnt compatible with math used to implement and train neural networks
 - There for words must be stored as continuous-valued vectors.
@@ -43,27 +44,29 @@ directly since text is categorical it isnt compatible with math used to implemen
 - Several types of embeddings have been invented and one popular one is Word2Vec.
 - Using a specific neural entwork layer or another pretained model we can enable different data types such as audio and video and text.
 
-## Tokenizing text
+### Tokenizing text
+
+An example of text splitting in preperation of embedding.
 
 ```python
 import re
 text = "Salve mundi. Hoc est scribitus."
 result = re.split(r'(\s)', text)
 print(result)
-
-
 ```
 
 ## Stage 2
 5. Training loop
 
 Llama3 took took approximately 1.3 million GPU hours of compute for pre-training and utilized 400 TFLOPS of compute.
+
 6. Model evaluation
 7. Load pretrained weights
 
 Points to "Foundation model"
 
 8. Finetuning
+
 Fine-tunes the pretrained LLM
 Works on Classifier and Personal assistant roles. Personal assistants are an instruction dataset.
 
@@ -72,3 +75,22 @@ Dataet with class labels
 
 Points to Classifier
 
+### Diagram LLM
+```mermaid
+graph TD;
+A["Build an LLM"] --> B["Stage 1"];
+B --> C["Data Preparation & Sampling"];
+B --> D["Attention Mechanism"];
+B --> E["LLM Architecture"];
+B --> F["Pre-training"];
+F --> G["Training Loop"];
+F --> H["Model Evaluation"];
+F --> I["Load Pretrained Weights"];
+F --> J["Fine-tuning"];
+J --> K["Personal Assistant"];
+J --> L["Classifier"];
+A --> M["Stage 2"];
+M --> F;
+M --> N["Stage 3"];
+N --> O["Dataset with Class Labels"];
+```
