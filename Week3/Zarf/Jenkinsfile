@@ -1,0 +1,59 @@
+pipeline {
+    agent any
+
+    stages {
+      steps {
+        checkout([
+            $class: 'GitSCM',
+            branches: [[name: '*/master']],
+            userRemoteConfigs: [[
+                url: 'https://bitbucket.org/your-username/your-repo.git',
+                credentialsId: 'your-bitbucket-credentials-id'
+            ]]
+        ])
+      }        
+        stage('Install Zarf') {
+            steps {
+                sh '''
+                    curl -L https://github.com/defenseunicorns/zarf/releases/latest/download/zarf_linux_amd64 -o zarf
+                    chmod +x zarf
+                    sudo mv zarf /usr/local/bin/
+                    zarf version
+                '''
+            }
+        }
+
+        stage('Create Zarf Package') {
+            steps {
+                sh 'zarf package create --confirm'
+            }
+        }
+
+        stage('Create k3d Cluster') {
+            steps {
+                sh '''
+                    curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+                    k3d cluster delete && k3d cluster create
+                '''
+            }
+        }
+
+        stage('Initialize Cluster') {
+            steps {
+                sh 'zarf init --confirm'
+            }
+        }
+
+        stage('Deploy Package') {
+            steps {
+                sh 'zarf package deploy --confirm'
+            }
+        }
+
+        stage('View Deployed Package') {
+            steps {
+                sh 'zarf package list'
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+name: my-cluster  # Add this line to set a custom cluster name
+image: cgr.dev/chainguard/k3s:latest
+servers: 1
+options:
+  k3s:
+    extraArgs:
+      - arg: --disable-network-policy
+        nodeFilters:
+        - server:*
+      - arg: --flannel-backend=none
+        nodeFilters:
+        - server:*
+      - arg: --kube-apiserver-arg=admission-control-config-file=/var/lib/rancher/k3s/server/pss.yaml
+        nodeFilters:
+        - server:*

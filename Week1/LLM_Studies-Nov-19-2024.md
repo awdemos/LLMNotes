@@ -43,7 +43,7 @@ Memory Complexity
 |-------|------------------|-----------|
 | RNN | O(n·d) | n = sequence length |
 | CNN | O(n·k·d) | d = model dimensionality |
-| Self-Attention | O(n²·d) | k = kernel size (CNNs) |
+| [Self-Attention] | O(n²·d) | k = kernel size (CNNs) |
 
 
 Computational Complexity
@@ -52,7 +52,7 @@ Computational Complexity
 |-------|------------------------|
 | RNN | O(n·d²) |
 | CNN | O(n·k·d²) |
-| Self-Attention | O(n²·d + n·d²) |
+| [Self-Attention] | O(n²·d + n·d²) |
 
 Self-Attention Complexity Breakdown:
 
@@ -60,8 +60,8 @@ O(n²·d): Computing query-key dot products
 O(n·d²): Applying attention weights to values
 
 ## Key Points:
-Self-attention has quadratic complexity with sequence length
-Higher computational cost for long sequences vs RNNs/CNNs
+[Self-attention] has quadratic complexity with sequence length
+Higher computational cost for long sequences vs [RNNs]/[CNNs]
 
 Benefits:
 - Better parallelization

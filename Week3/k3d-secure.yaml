@@ -1,0 +1,17 @@
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+image: cgr.dev/chainguard/k3s:latest
+servers: 3
+agents: 2
+options:
+  k3s:
+    extraArgs:
+      - arg: --disable-network-policy
+        nodeFilters:
+          - server:*
+      - arg: --flannel-backend=none
+        nodeFilters:
+          - server:*
+      - arg: --disable-kube-proxy
+        nodeFilters:
+          - server:*

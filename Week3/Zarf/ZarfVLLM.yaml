@@ -1,0 +1,52 @@
+# zarf package deploy vllm --confirm
+kind: ZarfPackageConfig
+metadata:
+  name: vllm
+  description: Zarf package for deploying vLLM using the Substratus Helm chart
+
+components:
+  - name: vllm-helm-chart
+    required: true
+    charts:
+      - name: vllm
+        version: 0.5.5
+        namespace: vllm
+        url: https://substratusai.github.io/helm
+        releaseName: vllm-release
+        valuesFiles:
+          - values.yaml
+    images:
+      - substratusai/vllm:v0.5.4
+
+# Define the values.yaml for the Helm chart deployment
+values:
+  model: mistralai/Mistral-7B-Instruct-v0.1
+  resources:
+    limits:
+      nvidia.com/gpu: 1
+      cpu: "10"
+      memory: "20Gi"
+    requests:
+      cpu: "2"
+      memory: "6Gi"
+      ephemeral-storage: "10Gi"
+  nodeSelector:
+    cloud.google.com/gke-accelerator: nvidia-l4
+  readManyPVC:
+    enabled: true
+    sourcePVC: "mistral-7b-instruct"
+    mountPath: /model
+    size: 20Gi
+  deploymentAnnotations:
+    lingo.substratus.ai/models: mistral-7b-instruct-v0.1
+    lingo.substratus.ai/min-replicas: "0" # needs to be string
+    lingo.substratus.ai/max-replicas: "3" # needs to be string
+
+# Optionally define any secrets or additional configurations if required.
+secrets:
+  - name: hf-token-secret
+    type: Opaque
+    data:
+      token: "REPLACE_WITH_TOKEN"
+
+# Additional configurations can be added here as needed.
