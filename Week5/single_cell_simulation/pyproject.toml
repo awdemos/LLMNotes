@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "single-cell-simulation"
+version = "0.1.0"
+description = "A simulation of a single-celled organism's experience"
+authors = ["Andrew <159745380+awdemos@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+numpy = "^1.26.2"
+matplotlib = "^3.8.2"
+
+[tool.poetry.scripts]
+simulate = "main:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
