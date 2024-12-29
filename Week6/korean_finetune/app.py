@@ -159,5 +159,5 @@ from transformers import TextStreamer
 text_streamer = TextStreamer(tokenizer)
 _ = model.generate(**inputs, streamer = text_streamer, max_new_tokens = 1024, repetition_penalty = 0.1)
 
-model.save_pretrained("lora_model")
-tokenizer.save_pretrained("lora_model")
+model.save_pretrained("lora_model_v2")
+tokenizer.save_pretrained("lora_model_v2")
