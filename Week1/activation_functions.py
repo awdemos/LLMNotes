@@ -1,3 +1,13 @@
+# Explanation:
+# Binary Step: Returns 1 if input > 0; else returns 0.
+# Linear: Returns the input unchanged.
+# Sigmoid: Maps input to a value between 0 and 1.
+# Tanh: Maps input to a value between -1 and 1.
+# ReLU: Outputs input directly if positive; otherwise outputs zero.
+# Softmax: Converts a vector of values into probabilities summing to one.
+# This code provides a clear representation of each activation function 
+# and visualizes their behavior across a range of inputs.
+
 import numpy as np
 import matplotlib.pyplot as plt
 
